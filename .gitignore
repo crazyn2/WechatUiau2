@@ -1,0 +1,8 @@
+.vscode
+*.jpg
+*.png
+__pycache__
+*.pyc
+*.log
+urlConfig.ini
+.qt_for_python/
