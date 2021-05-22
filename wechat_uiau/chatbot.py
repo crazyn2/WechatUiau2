@@ -13,6 +13,8 @@ logging.basicConfig(level=logging.DEBUG, \
     filemode="a")
 logger = logging.getLogger(__name__)
 
+import sys
+sys.path.append('..')
 
 class Chatbot:
     def __init__(self, session, question):
@@ -74,26 +76,26 @@ def testChatbot():
 
 
 if __name__ == '__main__':
-    # session = ''.join(random.sample('0123456789', 5))
-    # wt = WeChatAction()
-    # previoutMessage = ""
-    # while True:
-    #     currentMessag = wt.get_message()
-    #     if currentMessag == previoutMessage or currentMessag == "":
-    #         sleep(random.randint(2, 6))
-    #         continue
-    #     print("message: ", currentMessag)
-    #     fuc = Chatbot(session, currentMessag)
-    #     fuc.getReqSign()
-    #     r_session = fuc.doHttpPost().get('data').get('session')
-    #     r_answer = fuc.doHttpPost().get('data').get('answer')
-    #     if fuc.doHttpPost().get('ret') == 0 and \
-    #         fuc.doHttpPost().get('msg') == 'ok':
-    #         print("会话ID：", r_session)
-    #         logger.debug("msg ret: 0"+r_answer)
-    #         print("reply: ", r_answer)
-    #         wt.send_txt(r_answer)
-    #     else:
-    #         print("参数错误，请重试")
-    #     sleep(random.randint(2, 6))
-    testChatbot()
+    session = ''.join(random.sample('0123456789', 5))
+    wt = WeChatAction()
+    previoutMessage = ""
+    while True:
+        currentMessag = wt.get_message()
+        if currentMessag == previoutMessage or currentMessag == "":
+            sleep(random.randint(2, 6))
+            continue
+        print("message: ", currentMessag)
+        fuc = Chatbot(session, currentMessag)
+        fuc.getReqSign()
+        r_session = fuc.doHttpPost().get('data').get('session')
+        r_answer = fuc.doHttpPost().get('data').get('answer')
+        if fuc.doHttpPost().get('ret') == 0 and \
+            fuc.doHttpPost().get('msg') == 'ok':
+            print("会话ID：", r_session)
+            logger.debug("msg ret: 0"+r_answer)
+            print("reply: ", r_answer)
+            wt.send_txt(r_answer)
+        else:
+            print("参数错误，请重试")
+        sleep(random.randint(2, 6))
+    # testChatbot()
